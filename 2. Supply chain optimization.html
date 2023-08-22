@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Supply chain optimization</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    body { 
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+      width: 100%;
+      height: 100vh;
+      background-image: url('Fundo3.png'); /* Altera para a nova imagem de fundo */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #FFFFFF; /* Cor de fundo de fallback */
+      background-attachment: fixed; /* Torna o plano de fundo fixo */
+      flex-direction: column;
+      font-family: 'Montserrat', Arial, sans-serif; /* Mantém a fonte 'Montserrat' */
+      color: #406381;
+      line-height: 25px;
+    }
+    
+    .container {
+      /* Estilos existentes */
+      padding: 1450px 50px 30px 60px;
+      margin-top: 1000px;
+      text-align: justify;
+      /* Propriedade adicionada */
+      margin: 0 auto; /* Adiciona margem automática para centralizar o conteúdo */
+      max-width: 1700px; /* Define a largura máxima da página */
+    }
+    
+    .box-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .box {
+      position: relative;
+      width: 210px;
+      padding-bottom: 210px;
+      margin: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      /*border: 2px dashed #000000; /* Adiciona o contorno interrompido */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona um sombreado */
+    }
+    
+    .box:hover {
+      background-color: transparent;
+    }
+    
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: justify;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .box:hover .image-overlay {
+      opacity: 1;
+    }
+    
+    .image-overlay img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .text { /*Texto dos logos*/
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center; /* Justifica o texto */
+      color: #fff;
+      padding: 5px;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-weight: normal;
+      font-size: 12px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      width: 95%; /* Ajusta a largura do texto */
+      height: 90%; /* Ajusta a altura do texto */
+      overflow: auto; /* Adiciona rolagem caso o texto seja muito longo */
+      line-height: 17px;
+    }
+
+
+    
+    .box:hover .text {
+      opacity: 1;
+    }
+
+    .box1 {
+      background-image: url('AECOM.png');
+    }
+    
+    .box2 {
+      background-image: url('Skanska.png');
+    }
+    
+    .box3 {
+      background-image: url('Katerra.png');
+    }
+    
+    .box4 {
+      background-image: url('Gilbane.png');
+    }
+
+       
+    .description {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 25px;
+    }
+    
+
+    .list-item {
+      text-align: justify;
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 25px;
+    }
+    
+    .list-item {
+      margin-bottom: 10px;
+      list-style: none; /* Remove os bullet points predefinidos */
+    }
+
+    .list-item::before {
+      content: '';
+      display: inline-block;
+      width: 20px; /* Largura reduzida para 20px */
+      height: 20px; /* Altura reduzida para 20px */
+      background-image: url('BulletPointSemFundo.png');
+      display: inline-block;
+      background-size: cover;
+      margin-right: 6px;
+      color: #406381;
+    }
+
+    /* Propriedades adicionadas */
+    .logo-me,
+    .logo-startme {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 80px;
+      height: 80px;
+      z-index: 2;
+    }
+    
+    .logo-me {
+      background-image: url('logo ME.png');
+      background-size: cover;
+    }
+    
+    .logo-startme {
+      background-image: url('StartME-vertical-senfundo.png');
+      background-size: cover;
+      left: 100px;
+    }
+ 
+   .team-button {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 5px 20px;
+      background-color: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #FFFFFF;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 13px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .team-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+  
+    .homepage-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 5px 40px;
+      background-color: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #FFFFFF;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .homepage-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+
+    .me-challenge {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 35px;
+      color: #F3A42F;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .textbox {
+      width: 93%;
+      border: 5px solid #F3A42F;
+      padding: 10px;
+      height: auto;
+      resize: vertical;
+      font-size: 16px;
+      margin-top: 1px;
+      margin: 1px auto;
+      
+
+     }
+
+    .textbox-title {
+      text-align: left;
+      margin-bottom: 1px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #F3A42F;
+
+    }
+
+     .footer {
+       text-align: center;
+       padding: 5px;
+       background-color: #ED542f;
+       color: #FFFFFF;
+       font-size: 13px;
+       clear: both; /* Clear any floated content above the footer */
+       margin-top: 20px; /* Add space between content and footer */
+     }
+
+
+
+
+  </style>
+</head>
+<body>
+  <!-- Adiciona as imagens e o botão -->
+<body>
+  <a href="https://www.mota-engil.com/">
+    <div class="logo-me"></div>
+  </a>
+  <a href="https://careers.mota-engil.com/content/START-ME/?locale=pt_PT">
+    <div class="logo-startme"></div>
+  </a>
+  <h1 class="me-challenge">ME CHALLENGE</h1>
+  <a href="MenuPrincipal.html" class="homepage-button"><strong>Menu</strong></a>
+</body>
+
+  <a class="team-button" href="Equipa.html">Our Team</a>
+
+  <div class="container">
+    <h1 class="me-challenge">ME CHALLENGE</h1>
+    <h2 style="font-size: 23px;">SUPPLY CHAIN OPTIMIZATION</h2>
+    <p style="font-size: 15px;">AI can be applied to optimize the supply chain of Mota-Engil. AI algorithms can analyze historical data, forecast material demand, optimize inventory management, and streamline logistics processes, reducing costs and improving efficiency in material and equipment management.
+</p>
+
+    <p style="font-size: 15px;">Every company is unique, and the implementation of artificial intelligence in the supply chain should be tailored to the specific needs and characteristics of your company. Consider seeking specialized consulting to guide you during the implementation process.
+</p>
+
+    <div class="box-container">
+      <div class="box box1">
+        <div class="image-overlay">
+        </div>
+        <div class="text">AECOM is an engineering and construction services company that utilizes artificial intelligence to enhance the supply chain. Through AI algorithms, the company analyzes supplier data, project data, material histories, and logistics to improve supply management. This includes identifying efficiency opportunities, streamlining procurement processes, and ensuring material availability at each construction site.
+</div>
+      </div>
+      <div class="box box2">
+        <div class="image-overlay">
+        </div>
+        <div class="text"> SKANSKA is one of the world's largest construction companies and utilizes artificial intelligence to enhance the supply chain. Through AI solutions, the company analyzes supplier data, services, transportation, and logistics to improve supply management in construction projects. This includes service forecasting, strengthening transportation routes, and material management, ensuring that each project receives the necessary materials at the right time.
+</div>
+      </div>
+      <div class="box box3">
+        <div class="image-overlay">
+        </div>
+        <div class="text">Katerra is a construction company that applies artificial intelligence to its supply chain. Through AI algorithms, Katerra analyzes project data, suppliers, and logistics to improve material planning, identify efficiency opportunities, and ensure timely delivery of materials for each project.
+</div>
+      </div>
+      <div class="box box4">
+        <div class="image-overlay">
+        </div>
+        <div class="text">Gilbane is a construction company based in the USA that benefits from artificial intelligence to optimize its supply chain. The company has implemented an AI system that analyzes supplier data, inventory, and demand to strengthen inventory management, improve project planning, and reduce costs.
+</div>
+
+       </div>
+       </div>
+       
+
+      
+    <p style="font-size: 15px;">Improving the supply chain is an area where artificial intelligence can bring significant benefits to construction companies. AI can be used in various ways and provide numerous benefits:
+</p>
+
+    <outro style="font-size: 15px;"><span style="font-weight: bold;">Demand forecasting: </span> AI can analyze historical data from previous projects as well as external factors such as economic conditions and seasonality to forecast future demand for construction materials. With these forecasts, the company can schedule orders and minimize shortages or excess materials, improving the efficiency of the supply chain. This enables constant communication with suppliers who may be instrumental in supplying products at a later stage of the projects. </p>
+
+     <outro style="font-size: 15px;"><span style="font-weight: bold;">Logistics: </span>Artificial intelligence can be used to optimize the composition of transport containers and the logistics of delivering construction materials. AI algorithms can consider factors such as the final destination of the products, size, weight, shape, and physical composition to determine the most efficient way to pack the containers that will be later placed on ships for shipment to Africa. This helps reduce transportation costs and delivery time for products that would otherwise be ações corretivas, garantindo um fluxo contínuo e eficiente de materiais ao longo da cadeia held in Tertir's warehouse due to poor container organization.
+</p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Monitoring and tracking of suppliers: </span> AI can be used to monitor supplier performance in real-time, analyzing data such as delivery punctuality, material quality, and compliance with contractual requirements. This allows for quickly identifying issues and taking corrective actions, ensuring a continuous and efficient flow of materials throughout the supply chain. It also enables automatic and constant communication with suppliers to remind them of certain orders that are overdue and approaching the expected delivery time.</p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Prioritize tasks for automation:</span> Select the administrative tasks that will bring the greatest impact initially, starting with tasks that are low in complexity and high in volume to achieve quick benefits and demonstrate the value of automation to the team.</p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Data-driven decision-making:</span> With the help of AI, you can make more informed and strategic decisions in supply chain management. AI can analyze large volumes of data, identify patterns, conduct predictive analytics, and recommend actions to optimize supply chain efficiency, such as adjustments in orders, contract negotiations with suppliers, or changes in transportation routes. An example of this application in Mota-Engil's Procurement department is the potential forecast of product needs in ongoing projects and their material requirements, as well as suggesting possible GLOBAL CONTRACTS to be applied, allowing for optimization of not only financial resources but also time in the procurement of products identified by the AI model.</p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Team collaboration:</span> AI-based collaboration platforms can connect all elements of the Procurement & Logistics team, providing real-time contact and information sharing about ongoing purchases. This allows the Logistics team to proactively plan shipments in the near future or make possible changes to already placed orders. This promotes efficient communication, facilitates collaboration among team members, and streamlines the decision-making processes.</p>
+
+  <br>
+
+    <div class="list">
+
+      <h3>How to apply?</h3>
+     <p style="font-size: 15px;">To implement supply chain optimization using artificial intelligence in your construction company, the following steps should be followed:
+</p>
+
+     <ul style>
+
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Identifying specific needs and challenges of the company:</span> Evaluate the pain points of the current supply chain, identifying areas where delays, inefficiencies, or lack of visibility occur. Determine which aspects of the supply chain can benefit from the implementation of artificial intelligence.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Setting objectives and goals: </span>Establish clear goals for supply chain optimization, such as cost reduction, improved efficiency, better supplier management, waste reduction, or enhanced material traceability.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Assess available artificial intelligence solutions: </span> Research and evaluate specific artificial intelligence solutions for supply chain optimization. There are various options, such as demand forecasting systems, route optimization, supplier management, data analytics, among others. Choose solutions that align with the needs of your company.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Data collection and analysis:</span> Ensure the existence of suitable systems to collect and store relevant supply chain data. This includes data from suppliers, purchase history, demand, logistics, and other relevant data. The quality and integrity of the data are crucial to ensure accurate and reliable results.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Implementation and integration of the AI solution:</span> Collaborate with AI solution providers to implement the technology into your supply chain. Ensure that the solution is integrated with your existing systems, such as project management, procurement, or logistics systems.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Preparation and empowerment:</span> Provide adequate training to the team involved in supply chain management to effectively use AI solutions. Ensure that they understand how the algorithms work, how to interpret the results, and how to use the obtained information to make informed decisions.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Monitoring and continuous adjustments:</span> Regularly monitor the results and performance of the AI implementation in the supply chain. Make adjustments as necessary to further optimize the processes and ensure that the established goals are achieved.</li>
+
+
+      </ul>
+      
+    </div>
+  </div>
+
+<br>
+
+<div class="textbox">
+  <h3 class="textbox-title">Idea for Mota-Engil</h3>
+     <p style="font-size: 15px;">Implement a real-time tracking system using AI to monitor product movement and location, improving visibility and coordination in the supply chain. This reduces inefficiencies, enables quick problem identification, and enhances overall efficiency.
+</p>
+
+</div>
+
+<br>
+
+
+<div class="footer">
+   <small>
+      Mota-Engil | StartME | ME Challenge 2023
+   </small>
+</div>
+
+
+</body>
+</html>

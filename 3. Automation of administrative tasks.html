@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Automation of administrative tasks</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    body { 
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+      width: 100%;
+      height: 100vh;
+      background-image: url('Fundo3.png'); /* Altera para a nova imagem de fundo */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #FFFFFF; /* Cor de fundo de fallback */
+      background-attachment: fixed; /* Torna o plano de fundo fixo */
+      flex-direction: column;
+      font-family: 'Montserrat', Arial, sans-serif; /* Mantém a fonte 'Montserrat' */
+      color: #406381;
+      line-height: 25px;
+    }
+    
+    .container {
+      /* Estilos existentes */
+      padding: 1250px 50px 30px 60px;
+      margin-top: 1000px;
+      text-align: justify;
+      /* Propriedade adicionada */
+      margin: 0 auto; /* Adiciona margem automática para centralizar o conteúdo */
+      max-width: 1700px; /* Define a largura máxima da página */
+    }
+    
+    .box-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .box {
+      position: relative;
+      width: 210px;
+      padding-bottom: 210px;
+      margin: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      /*border: 2px dashed #000000; /* Adiciona o contorno interrompido */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona um sombreado */
+    }
+    
+    .box:hover {
+      background-color: transparent;
+    }
+    
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: justify;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .box:hover .image-overlay {
+      opacity: 1;
+    }
+    
+    .image-overlay img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .text { /*Texto dos logos*/
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center; /* Justifica o texto */
+      color: #fff;
+      padding: 5px;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-weight: normal;
+      font-size: 12px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      width: 95%; /* Ajusta a largura do texto */
+      height: 90%; /* Ajusta a altura do texto */
+      overflow: auto; /* Adiciona rolagem caso o texto seja muito longo */
+      line-height: 17px;
+    }
+
+
+    
+    .box:hover .text {
+      opacity: 1;
+    }
+
+    .box1 {
+      background-image: url('AECOM.png');
+    }
+    
+    .box2 {
+      background-image: url('Skanska.png');
+    }
+    
+    .box3 {
+      background-image: url('Katerra.png');
+    }
+    
+    .box4 {
+      background-image: url('Gilbane.png');
+    }
+
+       
+    .description {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 25px;
+    }
+    
+
+    .list-item {
+      text-align: justify;
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 25px;
+    }
+    
+    .list-item {
+      margin-bottom: 10px;
+      list-style: none; /* Remove os bullet points predefinidos */
+    }
+
+    .list-item::before {
+      content: '';
+      display: inline-block;
+      width: 20px; /* Largura reduzida para 20px */
+      height: 20px; /* Altura reduzida para 20px */
+      background-image: url('BulletPointSemFundo.png');
+      display: inline-block;
+      background-size: cover;
+      margin-right: 6px;
+      color: #406381;
+    }
+
+    /* Propriedades adicionadas */
+    .logo-me,
+    .logo-startme {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 80px;
+      height: 80px;
+      z-index: 2;
+    }
+    
+    .logo-me {
+      background-image: url('logo ME.png');
+      background-size: cover;
+    }
+    
+    .logo-startme {
+      background-image: url('StartME-vertical-senfundo.png');
+      background-size: cover;
+      left: 100px;
+    }
+ 
+   .team-button {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 5px 20px;
+      background-color: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #FFFFFF;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 13px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .team-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+  
+    .homepage-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 5px 40px;
+      background-color: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #FFFFFF;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .homepage-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+
+    .me-challenge {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 35px;
+      color: #F3A42F;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .textbox {
+      width: 93%;
+      border: 5px solid #F3A42F;
+      padding: 10px;
+      height: auto;
+      resize: vertical;
+      font-size: 16px;
+      margin-top: 1px;
+      margin: 1px auto;
+      
+
+     }
+
+    .textbox-title {
+      text-align: left;
+      margin-bottom: 1px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #F3A42F;
+
+    }
+
+     .footer {
+       text-align: center;
+       padding: 5px;
+       background-color: #ED542f;
+       color: #FFFFFF;
+       font-size: 13px;
+       clear: both; /* Clear any floated content above the footer */
+       margin-top: 20px; /* Add space between content and footer */
+     }
+
+
+
+
+  </style>
+</head>
+<body>
+  <!-- Adiciona as imagens e o botão -->
+<body>
+  <a href="https://www.mota-engil.com/">
+    <div class="logo-me"></div>
+  </a>
+  <a href="https://careers.mota-engil.com/content/START-ME/?locale=pt_PT">
+    <div class="logo-startme"></div>
+  </a>
+  <h1 class="me-challenge">ME CHALLENGE</h1>
+  <a href="MenuPrincipal.html" class="homepage-button"><strong>Menu</strong></a>
+</body>
+
+  <a class="team-button" href="Equipa.html">Our Team</a>
+
+  <div class="container">
+    <h1 class="me-challenge">ME CHALLENGE</h1>
+    <h2 style="font-size: 23px;">AUTOMATION OF ADMINISTRATIVE TASKS</h2>
+    <p style="font-size: 15px;">AI can be used to automate routine administrative tasks, freeing up human resources to focus on higher-value activities. 
+For example, AI-powered chatbots can handle frequently asked questions from employees, freeing up time for HR professionals to engage in more strategic activities.
+</p>
+    <p style="font-size: 15px;">These are just a few companies that have been successful in applying AI for automating administrative tasks. Each of them offers specific solutions for different business needs. It is important to evaluate the available options and choose the solution that best fits the company's needs.
+</p>
+    <div class="box-container">
+      <div class="box box1">
+        <div class="image-overlay">
+        </div>
+        <div class="text">IBM has developed Watson, an artificial intelligence platform that is used in various sectors, including the automation of administrative tasks. Watson is applied to create advanced chatbots that can answer employee questions, provide information about internal policies, process leave requests, and perform other routine administrative tasks.
+</div>
+      </div>
+      <div class="box box2">
+        <div class="image-overlay">
+        </div>
+        <div class="text">UiPath is a leading company in robotic process automation (RPA) and provides AI-based software solutions for automating administrative tasks. Their software robots can be programmed to perform a variety of tasks, such as form filling, invoice tracking, record updating, and other repetitive administrative activities.
+</div>
+      </div>
+      <div class="box box3">
+        <div class="image-overlay">
+        </div>
+        <div class="text">Salesforce, a leading CRM (Customer Relationship Management) solutions company, also uses AI to automate administrative tasks. Its virtual assistant, Einstein, can perform tasks such as generating reports, tracking tasks, and scheduling appointments, freeing up sales and customer service professionals to focus on more strategic and higher-value interactions.
+</div>
+      </div>
+      <div class="box box4">
+        <div class="image-overlay">
+        </div>
+        <div class="text">WorkFusion offers intelligent automation solutions that combine RPA and AI to robotize administrative tasks across various industries. Its platform can be used to extract data from documents, organize accounts, process reimbursement requests, and perform other routine activities.
+    </div>
+
+          </div>
+          </div>
+          
+
+      
+    <p style="font-size: 15px;">Artificial Intelligence (AI) can greatly benefit the automation of administrative tasks, improving efficiency and reducing manual effort. Here are several ways AI can be used for administrative task automation:</p>
+
+    <outro style="font-size: 15px;"><span style="font-weight: bold;">Virtual assistants and chatbots: </span> AI-powered virtual assistants and chatbots can handle routine inquiries, provide information, and perform basic tasks. They can respond to frequently asked questions, assist with appointment scheduling, and offer self-service options, reducing the need for human intervention.</p>
+
+     <outro style="font-size: 15px;"><span style="font-weight: bold;">Data analysis and reporting:  </span>AI algorithms can analyze large datasets, identify patterns, and generate reports or dashboards automatically. This saves time spent on data analysis and reporting, providing valuable insights for decision-making.</p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Meeting scheduling and coordination: </span> AI can automate meeting scheduling by analyzing participants' calendars, suggesting available time slots, and sending out meeting invitations. It can also handle reminders, rescheduling, and coordination, simplifying the administrative aspect of meetings.</p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Workflow automation: </span> AI can streamline workflows by automating repetitive tasks and routing documents or requests based on predefined rules. This accelerates the approval process, reduces errors, and ensures tasks are completed efficiently.</p>
+
+     
+  <br>
+    <div class="list">
+     
+
+      <h3>How to apply?</h3>
+      <ul style>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Identify suitable administrative tasks for automation:</span> Analyze your company's administrative activities and identify those that are repetitive, rule-based and time-consuming for employees. Common examples include processing documents, filling in forms, updating records and processing payments, among others. </li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Evaluate available automation solutions: </span>Research and evaluate automation solutions available in the market that are suitable for the company's needs. This may include RPA (Robotic Process Automation) tools, AI-based chatbots, and intelligent automation platforms. Consider resources, functionalities, costs, and integration with existing systems in the company.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Set clear objectives: </span> Establish clear goals and objectives for the automation of administrative tasks. For example, reducing time spent on routine tasks, increasing productivity, improving accuracy and quality, among others.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Prioritize tasks for automation:</span> Select the administrative tasks that will bring the greatest impact initially, starting with tasks that are low in complexity and high in volume to achieve quick benefits and demonstrate the value of automation to the team.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Choose a solution and provider:</span> Based on the evaluation of available solutions, select the automation solution that best meets the needs. Consider factors such as integration capability, ease of use, support, and scalability.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Prepare the data and systems:</span> Ensure that the data required for automation is available, clean, and properly structured. Verify compatibility and integration with existing systems in the company. If necessary, make adjustments and improvements to internal processes.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Implement and test:</span> Perform the implementation of the chosen automation solution in a controlled environment. Conduct tests to ensure that the solution works correctly and meets expectations. Make necessary adjustments before expanding automation to other departments or processes</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Train the team:</span> Provide adequate training for the team that will work with the automation solution. This includes training on the use of the tool, understanding of the automated processes, and the ability to handle exceptions or issues.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Monitor and adjust:</span> Regularly monitor the automation of administrative tasks to ensure that it is functioning correctly and achieving the desired results. Make adjustments and improvements as necessary, taking into account feedback from the team and end users.</li>
+      </ul>
+    </div>
+  </div>
+
+<br>
+
+<div class="textbox">
+  <h3 class="textbox-title">Idea for Mota-Engil</h3>
+     <p style="font-size: 15px;">To enhance the ON.ME platform, consider incorporating a chatbot feature that can assist employees by providing relevant information and answering their questions promptly.</p>
+
+</div>
+
+<br>
+
+
+<div class="footer">
+   <small>
+      Mota-Engil | StartME | ME Challenge 2023
+   </small>
+</div>
+
+</body>
+</html>

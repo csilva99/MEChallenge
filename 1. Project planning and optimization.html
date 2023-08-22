@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project planning and optimization</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    body { 
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+      width: 100%;
+      height: 100vh;
+      background-image: url('Fundo3.png'); /* Altera para a nova imagem de fundo */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #FFFFFF; /* Cor de fundo de fallback */
+      background-attachment: fixed; /* Torna o plano de fundo fixo */
+      flex-direction: column;
+      font-family: 'Montserrat', Arial, sans-serif; /* Mantém a fonte 'Montserrat' */
+      color: #406381;
+      line-height: 25px;
+    }
+    
+    .container {
+      /* Estilos existentes */
+      padding: 1050px 50px 30px 60px;
+      margin-top: 1000px;
+      text-align: justify;
+      /* Propriedade adicionada */
+      margin: 0 auto; /* Adiciona margem automática para centralizar o conteúdo */
+      max-width: 1700px; /* Define a largura máxima da página */
+    }
+    
+    .box-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .box {
+      position: relative;
+      width: 210px;
+      padding-bottom: 210px;
+      margin: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      /*border: 2px dashed #000000; /* Adiciona o contorno interrompido */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona um sombreado */
+    }
+    
+    .box:hover {
+      background-color: transparent;
+    }
+    
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: justify;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .box:hover .image-overlay {
+      opacity: 1;
+    }
+    
+    .image-overlay img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .text { /*Texto dos logos*/
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center; /* Justifica o texto */
+      color: #fff;
+      padding: 5px;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-weight: normal;
+      font-size: 12px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      width: 95%; /* Ajusta a largura do texto */
+      height: 90%; /* Ajusta a altura do texto */
+      overflow: auto; /* Adiciona rolagem caso o texto seja muito longo */
+      line-height: 17px;
+    }
+
+
+    
+    .box:hover .text {
+      opacity: 1;
+    }
+
+    .box1 {
+      background-image: url('AECOM.png');
+    }
+    
+    .box2 {
+      background-image: url('Skanska.png');
+    }
+    
+    .box3 {
+      background-image: url('Katerra.png');
+    }
+    
+    .box4 {
+      background-image: url('Gilbane.png');
+    }
+
+       
+    .description {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 25px;
+    }
+    
+
+    .list-item {
+      text-align: justify;
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 25px;
+    }
+    
+    .list-item {
+      margin-bottom: 10px;
+      list-style: none; /* Remove os bullet points predefinidos */
+    }
+
+    .list-item::before {
+      content: '';
+      display: inline-block;
+      width: 20px; /* Largura reduzida para 20px */
+      height: 20px; /* Altura reduzida para 20px */
+      background-image: url('BulletPointSemFundo.png');
+      display: inline-block;
+      background-size: cover;
+      margin-right: 6px;
+      color: #406381;
+    }
+
+    /* Propriedades adicionadas */
+    .logo-me,
+    .logo-startme {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 80px;
+      height: 80px;
+      z-index: 2;
+    }
+    
+    .logo-me {
+      background-image: url('logo ME.png');
+      background-size: cover;
+    }
+    
+    .logo-startme {
+      background-image: url('StartME-vertical-senfundo.png');
+      background-size: cover;
+      left: 100px;
+    }
+ 
+   .team-button {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 5px 20px;
+      background-color: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #FFFFFF;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 13px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .team-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+  
+    .homepage-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 5px 40px;
+      background-color: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #FFFFFF;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .homepage-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+
+    .me-challenge {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 35px;
+      color: #F3A42F;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .textbox {
+      width: 93%;
+      border: 5px solid #F3A42F;
+      padding: 10px;
+      height: auto;
+      resize: vertical;
+      font-size: 16px;
+      margin-top: 1px;
+      margin: 1px auto;
+      
+
+     }
+
+    .textbox-title {
+      text-align: left;
+      margin-bottom: 1px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #F3A42F;
+
+    }
+
+     .footer {
+       text-align: center;
+       padding: 5px;
+       background-color: #ED542f;
+       color: #FFFFFF;
+       font-size: 13px;
+       clear: both; /* Clear any floated content above the footer */
+       margin-top: 20px; /* Add space between content and footer */
+     }
+
+
+
+  </style>
+</head>
+<body>
+  <!-- Adiciona as imagens e o botão -->
+<body>
+  <a href="https://www.mota-engil.com/">
+    <div class="logo-me"></div>
+  </a>
+  <a href="https://careers.mota-engil.com/content/START-ME/?locale=pt_PT">
+    <div class="logo-startme"></div>
+  </a>
+  <h1 class="me-challenge">ME CHALLENGE</h1>
+  <a href="MenuPrincipal.html" class="homepage-button"><strong>Menu</strong></a>
+</body>
+
+  <a class="team-button" href="Equipa.html">Our Team</a>
+
+  <div class="container">
+    <h1 class="me-challenge">ME CHALLENGE</h1>
+    <h2 style="font-size: 23px;">PROJECT PLANNING AND OPTIMIZATION</h2>
+    <p style="font-size: 15px;">AI can be used to automate routine administrative tasks, freeing up human resources to focus on higher-value activities. 
+For example, AI-powered chatbots can handle frequently asked questions from employees, freeing up time for HR professionals to engage in more strategic activities.
+</p>
+    <p style="font-size: 15px;">Large companies are already investing in Artificial Intelligence to achieve better results, specifically in the planning of their projects. Here are some specific examples of how Artificial Intelligence can help a company:
+</p>
+    <div class="box-container">
+      <div class="box box1">
+        <div class="image-overlay">
+        </div>
+        <div class="text">Siemens uses artificial intelligence to simulate and improve factory planning. Through modeling and simulation of production processes, Siemens can identify bottlenecks, test different factory layout scenarios, streamline material flow, and optimize overall production efficiency.
+</div>
+      </div>
+      <div class="box box2">
+        <div class="image-overlay">
+        </div>
+        <div class="text">Shell uses AI to improve the planning of oil and gas projects. Through the analysis of historical data, AI models can identify patterns and provide insights into best practices for planning, resource allocation, and risk mitigation. This allows Shell to make more informed and efficient decisions when starting new projects.
+</div>
+      </div>
+      <div class="box box3">
+        <div class="image-overlay">
+        </div>
+        <div class="text">Mortenson Construction, a US-based construction company, is using artificial intelligence to enhance the process of project planning and estimation. They employ machine learning algorithms to analyze historical data from previous projects and identify patterns that help predict costs, schedules, and risks associated with new construction projects more accurately.
+</div>
+      </div>
+      <div class="box box4">
+        <div class="image-overlay">
+        </div>
+        <div class="text">Vinci Construction, one of the world's largest construction companies, is investing in AI technologies to improve project management. The company is using AI algorithms to analyze large volumes of data and identify performance patterns in previous projects, enabling resource optimization, predicting and mitigating risks, and enhancing operational efficiency.
+</div>
+      </div>
+          </div>
+          
+     
+    <p style="font-size: 15px;">Artificial Intelligence (AI) can be leveraged in project planning and optimization to enhance efficiency, decision-making, and overall project success. Here are several ways AI can benefit project planning and optimization:
+    </p>
+
+    <outro style="font-size: 15px;"><span style="font-weight: bold;">Data analysis and forecasting:  </span> AI can analyse historical project data, including project timelines, resource allocation, costs, and outcomes, to identify patterns and make accurate predictions. This helps in estimating project durations, identifying potential risks, and optimizing resource allocation.</p>
+
+     <outro style="font-size: 15px;"><span style="font-weight: bold;">Risk management:  </span>AI can analyse project risks by assessing various factors and historical data to identify potential risks and their impact on project outcomes. It can provide proactive risk mitigation strategies and suggest contingency plans to optimize project planning. </p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Resource optimization:  </span> AI algorithms can optimize resource allocation by considering factors such as skill sets, availability, and cost. It can help identify bottlenecks, allocate resources efficiently, and ensure that the right resources are assigned to the right tasks, thereby optimizing project timelines and outcomes.</p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Intelligent scheduling: </span> AI can assist in creating project schedules by considering various constraints, dependencies, and resource availability. It can automatically adjust schedules based on real-time data, changes, and resource availability, optimizing project timelines, and minimizing delays.</p>
+
+      
+  <br>
+    <div class="list">
+     
+
+      <h3>How to apply?</h3>
+      <ul style>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Data collection and preparation:</span> Collecting relevant data about previous projects, including information about resources used, execution times, costs, and achieved outcomes. </li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Choice of AI techniques: </span>Identify the most suitable AI techniques for the intended use. This may involve the use of machine learning algorithms such as regression, decision trees, or optimization algorithms such as genetic algorithms or linear programming algorithms.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Development or acquisition of AI models: </span> Based on the chosen techniques, AI models can be developed in-house or ready-made solutions available in the market can be utilized. If the decision is made to develop custom models, it is necessary to train them using the prepared data.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Implementation of the AI system: </span> Once the AI model is ready, it needs to be implemented into the project planning and optimization system. This may involve integrating the models into existing software or developing a customized system to meet the specific needs of the company.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Testing and validation: </span> Before deploying the AI system into production, it is important to conduct rigorous testing and validation to ensure it is functioning correctly. This involves running test cases and comparing the predicted results from the AI system with the actual outcomes of previous projects.</li>
+
+        <li class="list-item">
+        <span style="font-weight: bold;">Monitoring and continuous improvement:</span> After implementation, it is necessary to constantly monitor and adjust the performance of the AI system. This may involve analyzing performance indicators, identifying issues or limitations, and incorporating user feedback to improve the system over time.</li>
+
+      </ul>
+    </div>
+  </div>
+
+
+<br>
+
+<div class="textbox">
+  <h3 class="textbox-title">Idea for Mota-Engil</h3>
+     <p style="font-size: 15px;">Continuous improvement: AI can conduct regular retrospectives to analyze team performance, identify areas for improvement, and implement corrective actions. Take advantage of these opportunities to learn from past successes and failures, and make adjustments to enhance the project planning and execution process.</p>
+
+</div>
+
+<br>
+
+<div class="footer">
+   <small>
+      Mota-Engil | StartME | ME Challenge 2023
+   </small>
+</div>
+
+</body>
+</html>

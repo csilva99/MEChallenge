@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menu</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    body {    
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center; /* Centralizar horizontalmente */
+      align-items: center; /* Centralizar verticalmente */
+      text-align: justify;
+      width: 100%;
+      height: 100vh;
+      background-image: url('Fundo2.png'); /* Substitua pelo caminho correto */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #FFFFFF; /* Cor de fundo de fallback */
+      flex-direction: column;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 200px); /* Ajusta a altura da área das caixas */
+      flex-wrap: wrap; /* Permite que as caixas sejam colocadas em várias linhas */
+    }
+    
+    .box {
+      width: 250px;
+      height: 400px;
+      background-color: #ccc;
+      margin: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+      transition: width 0.3s, height 0.3s;
+      background-size: cover;
+      background-position: center;
+      top: calc(38%);
+    }
+    
+    .box:hover {
+      width: 250px;
+      height: 450px;
+    }
+    
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #FFF;
+      padding: 10px;
+      box-sizing: border-box;
+      opacity: 1;
+      font-family: "Montserrat", Arial, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .box2 .text,
+    .box3 .text,
+    .box4 .text {
+      font-weight: normal;
+    }
+    
+    .box1 .text,
+    .box2 .text,
+    .box3 .text,
+    .box4 .text {
+      font-weight: bold;
+    }
+    
+    .box1 {
+      background-image: url('1. Planning.jpg');
+      background-size: cover;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      opacity: 0.5;
+    }
+    
+    .box1 .text {
+      color: #000000;
+      background-color: rgba(255, 255, 255, 1);
+    }
+        
+    .box2 {
+      background-image: url('2. Supply Chain.jpg');
+      background-size: cover;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      opacity: 0.5;
+    }
+    
+    .box2 .text {
+      color: #000000;
+      background-color: rgba(255, 255, 255, 1);
+    }
+    
+    .box3 {
+      background-image: url('3. Administrative.jpg');
+      background-size: cover;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      opacity: 0.5;
+    }
+    
+    .box3 .text {
+      color: #000000;
+      background-color: rgba(255, 255, 255, 1);
+    }
+    
+    .box4 {
+      background-image: url('4. Maintanence.jpg');
+      background-size: cover;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      opacity: 0.5;
+    }
+    
+    .box4 .text {
+      color: #000000;
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    .me-challenge {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 50px;
+      color: #F3A42F;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+    }
+   
+    .team-button {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 5px 40px;
+      background-color: transparent;
+      color: #1B71A9;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #1B71A9;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .team-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+  
+    .homepage-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 5px 40px;
+      background-color: transparent;
+      color: #1B71A9;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #1B71A9;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .homepage-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+
+    .logo-me,
+    .logo-startme {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 80px;
+      height: 80px;
+      z-index: 2;
+    }
+    
+    .logo-me {
+      background-image: url('logo ME.png');
+      background-size: cover;
+    }
+    
+    .logo-startme {
+      background-image: url('StartME-vertical-senfundo.png');
+      background-size: cover;
+      left: 100px;
+    }
+
+    .paragrafo {
+      position: absolute;    
+      top: calc(25%);
+      width: 80%;
+      max-width: 70%;
+      margin: 0 auto;
+      /*padding: 20px;*/
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 25px;
+      color: #000000;
+      text-align: justify;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="1. Project planning and optimization.html" class="box box1">
+      <div class="text">
+        PROJECT PLANNING AND OPTIMIZATION 
+      </div>
+    </a>
+    <a href="2. Supply chain optimization.html" class="box box2">
+      <div class="text">
+        SUPPLY CHAIN OPTIMIZATION
+      </div>
+    </a>
+    <a href="3. Automation of administrative tasks.html" class="box box3">
+      <div class="text">
+        AUTOMATION OF ADMINISTRATIVE TASKS
+      </div>
+    </a>
+    <a href="4. Predictive Maintenance.html" class="box box4">
+      <div class="text">
+        PREDICTIVE MAINTENANCE
+      </div>
+    </a>
+      <div class="paragrafo">
+    Mota-Engil has a track record of over 70 years and is recognized for its solid reputation in the engineering and construction sectors, as well as for its values, vision, and mission that encompass its social and environmental responsibility. With the advancement of technology, Artificial Intelligence (AI) will play a crucial role in optimizing practices and strengthening the group's commitments. Therefore, Mota-Engil should harness the potential of AI to drive its corporate responsibility, promoting more efficient, sustainable, and socially and economically aligned practices.
+    </div>
+  </div>
+ 
+  <a class="team-button" href="Equipa.html">Our Team</a>
+  <a class="homepage-button" href="HOMEPAGE.html"><strong>Homepage</strong></a>
+
+<body>
+  <a href="https://www.mota-engil.com/">
+    <div class="logo-me"></div>
+  </a>
+  <a href="https://careers.mota-engil.com/content/START-ME/?locale=pt_PT">
+    <div class="logo-startme"></div>
+  </a>
+  <h1 class="me-challenge">ME CHALLENGE</h1>
+
+
+</body>
+
+</body>
+</html>

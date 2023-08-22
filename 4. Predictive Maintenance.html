@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predictive Maintenance</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    body { 
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+      width: 100%;
+      height: 100vh;
+      background-image: url('Fundo3.png'); /* Altera para a nova imagem de fundo */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #FFFFFF; /* Cor de fundo de fallback */
+      background-attachment: fixed; /* Torna o plano de fundo fixo */
+      flex-direction: column;
+      font-family: 'Montserrat', Arial, sans-serif; /* Mantém a fonte 'Montserrat' */
+      color: #406381;
+      line-height: 25px;
+    }
+    
+    .container {
+      /* Estilos existentes */
+      padding: 1400px 50px 30px 60px;
+      margin-top: 1000px;
+      text-align: justify;
+      /* Propriedade adicionada */
+      margin: 0 auto; /* Adiciona margem automática para centralizar o conteúdo */
+      max-width: 1700px; /* Define a largura máxima da página */
+    }
+    
+    .box-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .box {
+      position: relative;
+      width: 210px;
+      padding-bottom: 210px;
+      margin: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      /*border: 2px dashed #000000; /* Adiciona o contorno interrompido */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona um sombreado */
+    }
+    
+    .box:hover {
+      background-color: transparent;
+    }
+    
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: justify;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .box:hover .image-overlay {
+      opacity: 1;
+    }
+    
+    .image-overlay img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .text { /*Texto dos logos*/
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center; /* Justifica o texto */
+      color: #fff;
+      padding: 5px;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-weight: normal;
+      font-size: 12px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      width: 95%; /* Ajusta a largura do texto */
+      height: 90%; /* Ajusta a altura do texto */
+      overflow: auto; /* Adiciona rolagem caso o texto seja muito longo */
+      line-height: 17px;
+    }
+
+
+    
+    .box:hover .text {
+      opacity: 1;
+    }
+
+    .box1 {
+      background-image: url('AECOM.png');
+    }
+    
+    .box2 {
+      background-image: url('Skanska.png');
+    }
+    
+    .box3 {
+      background-image: url('Katerra.png');
+    }
+    
+    .box4 {
+      background-image: url('Gilbane.png');
+    }
+
+       
+    .description {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 25px;
+    }
+    
+
+    .list-item {
+      text-align: justify;
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 25px;
+    }
+    
+    .list-item {
+      margin-bottom: 10px;
+      list-style: none; /* Remove os bullet points predefinidos */
+    }
+
+    .list-item::before {
+      content: '';
+      display: inline-block;
+      width: 20px; /* Largura reduzida para 20px */
+      height: 20px; /* Altura reduzida para 20px */
+      background-image: url('BulletPointSemFundo.png');
+      display: inline-block;
+      background-size: cover;
+      margin-right: 6px;
+      color: #406381;
+    }
+
+    /* Propriedades adicionadas */
+    .logo-me,
+    .logo-startme {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 80px;
+      height: 80px;
+      z-index: 2;
+    }
+    
+    .logo-me {
+      background-image: url('logo ME.png');
+      background-size: cover;
+    }
+    
+    .logo-startme {
+      background-image: url('StartME-vertical-senfundo.png');
+      background-size: cover;
+      left: 100px;
+    }
+ 
+   .team-button {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 5px 20px;
+      background-color: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #FFFFFF;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 13px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .team-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+  
+    .homepage-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 5px 40px;
+      background-color: transparent;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #FFFFFF;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .homepage-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+
+    .me-challenge {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 35px;
+      color: #F3A42F;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .textbox {
+      width: 93%;
+      border: 5px solid #F3A42F;
+      padding: 10px;
+      height: auto;
+      resize: vertical;
+      font-size: 16px;
+      margin-top: 1px;
+      margin: 1px auto;
+      
+
+     }
+
+    .textbox-title {
+      text-align: left;
+      margin-bottom: 1px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #F3A42F;
+
+    }
+
+     .footer {
+       text-align: center;
+       padding: 5px;
+       background-color: #ED542f;
+       color: #FFFFFF;
+       font-size: 13px;
+       clear: both; /* Clear any floated content above the footer */
+       margin-top: 20px; /* Add space between content and footer */
+     }
+
+
+
+  </style>
+</head>
+<body>
+  <!-- Adiciona as imagens e o botão -->
+<body>
+  <a href="https://www.mota-engil.com/">
+    <div class="logo-me"></div>
+  </a>
+  <a href="https://careers.mota-engil.com/content/START-ME/?locale=pt_PT">
+    <div class="logo-startme"></div>
+  </a>
+  <h1 class="me-challenge">ME CHALLENGE</h1>
+  <a href="MenuPrincipal.html" class="homepage-button"><strong>Menu</strong></a>
+</body>
+
+  <a class="team-button" href="Equipa.html">Our Team</a>
+
+  <div class="container">
+    <h1 class="me-challenge">ME CHALLENGE</h1>
+    <h2 style="font-size: 23px;">PREDICTIVE MAINTENANCE</h2>
+    <p style="font-size: 15px;">Mota-Engil can leverage Artificial Intelligence (AI) to implement predictive maintenance systems in its infrastructure, such as bridges and roads. AI algorithms can analyze data emitted by sensors installed in the infrastructure and predict when maintenance will be required. The use of AI would enable the company to perform proactive repairs, thereby reducing potential failures or unexpected interruptions that may arise from the lack or postponement of necessary maintenance. Additionally, it would also be possible to have better control over the state/evolution of the infrastructure, making the work more effective and better in terms of long-term quality.
+</p>
+    <div class="box-container">
+      <div class="box box1">
+        <div class="image-overlay">
+        </div>
+        <div class="text">General Electric (GE) utilizes AI-based predictive maintenance across various sectors, including aerospace, energy, and transportation. Through the use of advanced algorithms, GE continuously monitors the performance of equipment and systems, identifying early signs of issues and scheduling proactive maintenance to prevent failures and interruptions.
+</div>
+      </div>
+      <div class="box box2">
+        <div class="image-overlay">
+        </div>
+        <div class="text">Siemens is another company that applies predictive maintenance using AI in its infrastructure solutions. Through sensors and AI algorithms, Siemens monitors the wear and degradation of equipment and systems, allowing maintenance to be performed before a failure occurs, thus avoiding downtime and promoting cost savings in repairs.
+</div>
+      </div>
+      <div class="box box3">
+        <div class="image-overlay">
+        </div>
+        <div class="text">SKF is a leading company in bearing and lubrication systems technology. It utilizes AI-based predictive maintenance to monitor and analyze data from its equipment sensors. Based on this analysis, SKF is able to predict when issues will occur and proactively schedule maintenance, maximizing the lifespan of the equipment.
+</div>
+      </div>
+      <div class="box box4">
+        <div class="image-overlay">
+        </div>
+        <div class="text">ABB is a technology company that provides solutions for various industries, including energy, transportation, and manufacturing. ABB utilizes AI-powered predictive maintenance to monitor and analyze data from sensors in its systems and equipment. This enables the company to identify patterns and anomalies in the data and take early maintenance actions.
+</div>
+      </div>
+    </div>
+
+    <p style="font-size: 15px;">These are just a few companies that have achieved success in applying predictive maintenance using AI. Each of them utilizes specific approaches and technologies to monitor and analyze sensor data and make proactive maintenance decisions. It is important to evaluate the available options and tailor them to the specific needs of Mota-Engil.
+</p>
+
+<br>
+    
+          
+     
+    <p style="font-size: 15px;">Artificial Intelligence (AI) can play a significant role in enabling predictive maintenance, which helps organizations optimize maintenance activities, reduce costs, and improve equipment reliability. Here are several ways AI can benefit predictive maintenance:</p>
+
+    <outro style="font-size: 15px;"><span style="font-weight: bold;">Anomaly detection:  </span> AI algorithms can analyze sensor data, equipment readings, and historical performance to detect anomalies and deviations from normal operating conditions. By identifying early signs of equipment malfunction or degradation, predictive maintenance can be scheduled to prevent costly breakdowns. </p>
+
+     <outro style="font-size: 15px;"><span style="font-weight: bold;">Machine learning-based failure prediction:  </span>AI models can be trained using historical maintenance data to predict when equipment is likely to fail. By considering various factors such as usage patterns, environmental conditions, and sensor data, AI can provide accurate predictions, allowing maintenance teams to proactively address issues before failures occur. </p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Condition monitoring:  </span> AI can continuously monitor equipment conditions by analysing real-time sensor data. By establishing baseline performance metrics and comparing them to current readings, AI can detect changes, abnormalities, or trends that indicate potential maintenance needs. This enables timely interventions and reduces unplanned downtime.</p>
+
+      <outro style="font-size: 15px;"><span style="font-weight: bold;">Remote equipment monitoring:</span> AI can enable remote monitoring of equipment performance through the integration of IoT devices and sensors. This allows organizations to collect real-time data, identify potential maintenance needs, and make informed decisions without physically inspecting the equipment.</p>
+
+      
+  <br>
+    <div class="list">
+      <h3>How to apply?</h3>
+      <ul style>
+        <li class="list-item">
+        <span style="font-weight: bold;">Identifying suitable maintenance tasks for automation:</span> Firstly, it is necessary to analyze the maintenance activities already performed on the company's infrastructure. Identify those tasks that are repetitive, rule-based, and time-consuming. For instance, data analysis from sensors, condition monitoring, and regular inspections may be ideal candidates for automation.</li>
+
+        <li class="list-item">
+<span style="font-weight: bold;">Evaluate the available AI solutions:</span> Conduct an in-depth research and assess the AI solutions available in the market for predictive maintenance. Consider data analytics tools, machine learning algorithms, and automatic learning. Carefully evaluate the features offered by each solution, their functionalities, costs, and integration with the existing systems in your company.</li>
+
+        <li class="list-item">
+<span style="font-weight: bold;">Set Clear Objectives:</span> Establish clear goals and objectives for the implementation of predictive maintenance systems. These goals may include reducing failures and interruptions, optimizing maintenance resources, and increasing the lifespan of infrastructure. Ensure that the objectives are specific, measurable, attainable, relevant, and time-bound.</li>
+
+        <li class="list-item">
+<span style="font-weight: bold;">Prioritizing tasks for automation:</span> Prioritize maintenance tasks that will have the highest initial impact and potential benefits. Start with low complexity and high volume tasks to achieve quick results and demonstrate the value of automation to the team. This will help create an environment conducive to implementing more complex systems.</li>
+
+        <li class="list-item">
+<span style="font-weight: bold;">Choose a solution and provider:</span> Based on the evaluation of available AI solutions, choose the one that best meets your company's needs. Consider the solution's integration capability with existing sensors and systems, ease of use, support provided by the provider, and system scalability. Make sure to select a reliable provider with proven experience in the field of predictive maintenance.</li>
+
+        <li class="list-item">
+<span style="font-weight: bold;">Preparing data and systems:</span> Ensure that data from sensors is available, cleaned, and correctly structured for the application of AI algorithms. Verify compatibility and integration with existing monitoring systems in your company. Make necessary adjustments and improvements to internal processes to ensure an efficient and accurate implementation.</li>
+
+        <li class="list-item">
+<span style="font-weight: bold;">Implement and test:</span> Perform the implementation of the chosen AI solution in a controlled environment. Conduct tests to ensure the proper functioning of the system and compliance with established expectations. Make any necessary adjustments before expanding the automation to other infrastructures or sectors of the company.</li>
+
+        <li class="list-item">
+<span style="font-weight: bold;">Train the team:</span> Providing proper training for the team that will work with the AI solution is essential. Ensure that they are familiar with the automation tool being used, understand the automated processes, and are capable of handling exceptions or issues that may arise during the use of the technology.</li>
+
+        <li class="list-item">
+<span style="font-weight: bold;">Monitor and adjust:</span> Regularly monitor the automation of predictive maintenance processes to ensure the proper functioning of the system. Make adjustments and improvements as necessary, taking into account feedback from the team and end users. Use the obtained results to continuously enhance the effectiveness and long-term quality of the work.</li>  
+</ul>
+    </div>
+
+<br>
+
+<div class="textbox">
+  <h3 class="textbox-title">Idea for Mota-Engil</h3>
+     <p style="font-size: 15px;">Install monitoring sensors on critical equipment and use machine learning algorithms to analyze real-time data, predicting potential issues and enabling proactive maintenance. This improves reliability, reduces costs, and enhances operational efficiency.</p>
+
+</div>
+
+<br>
+
+<div class="footer">
+   <small>
+      Mota-Engil | StartME | ME Challenge 2023
+   </small>
+</div>
+
+</body>
+</html>

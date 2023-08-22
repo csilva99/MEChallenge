@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Equipa</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('Fundo4.png'); /* Altera para a nova imagem de fundo */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #FFFFFF; /* Cor de fundo de fallback */
+      background-attachment: fixed; /* Torna o plano de fundo fixo */
+      height: 100vh;
+      background-color: #f2f2f2;
+    }
+    .team-member {
+      text-align: center;
+      width: 25%;
+      margin: 10px;
+    }
+    .member-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    .member-name {
+      color: #406381;
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 20px;
+    }
+
+    .member-info-company,
+    .member-info-department,
+    .member-info-team {
+      font-size: 18px;
+      color: #779ebd;
+      margin-top: 5px;
+      font-weight: 400; /* Set a default font weight */
+    }
+
+    .member-info-company {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /*.member-info-department {
+      font-weight: bold;
+      font-size: 16px;
+    }*/
+
+    .member-info-team {
+      font-weight: 300; /* Use a lighter font weight */
+      font-style: light; /* Use italic instead of light */
+      color: #808080;
+      font-size: 14px;
+    }
+    
+    .logo-me,
+    .logo-startme {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 80px;
+      height: 80px;
+      z-index: 2;
+    }
+    
+    .logo-me {
+      background-image: url('logo ME.png');
+      background-size: cover;
+    }
+    
+    .logo-startme {
+      background-image: url('StartME-vertical-senfundo.png');
+      background-size: cover;
+      left: 110px;
+    }
+    
+    .menu-button {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 7px 32px;
+      background-color: transparent;
+      color: #1B71A9;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #1B71A9;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .team-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+  
+    .homepage-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 7px 40px;
+      background-color: transparent;
+      color: #1B71A9;
+      text-decoration: none;
+      border-radius: 20px;
+      border: 2px solid #1B71A9;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .homepage-button:hover {
+      background-color: #1B71A9;
+      color: #FFFFFF;
+    }
+
+    .me-challenge {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 50px;
+      color: #F3A42F;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+  <a href="https://www.mota-engil.com/">
+    <div class="logo-me"></div>
+  </a>
+  <a href="https://careers.mota-engil.com/content/START-ME/?locale=pt_PT">
+    <div class="logo-startme"></div>
+  </a>
+  <h1 class="me-challenge">ME CHALLENGE</h1>
+  <a href="HOMEPAGE.html" class="homepage-button"><strong>Homepage</strong></a>
+</body>
+  <a href="MenuPrincipal.html" class="menu-button"><strong>Menu</strong></a>
+</body>
+
+
+  <div class="team-member">
+  <a href="https://www.linkedin.com/in/beatriz-pimentaaa/">
+    <img src="beatriz.png" alt="Foto da Beatriz" class="member-photo">
+  </a>
+    <div class="member-name">BEATRIZ PIMENTA</div>
+    <div class="member-info-company"> ME Global </a></div>
+    <div class="member-info-department">IT</div>
+    <div class="member-info-team">Global Services - FI</div>
+  </div>
+
+  <div class="team-member">
+  <a href="https://www.linkedin.com/in/carlota-lorenz-5182ba195/">
+    <img src="carlota.png" alt="Foto da Carlota" class="member-photo">
+  </a>
+    <div class="member-name">CARLOTA LORENZ</div>
+    <div class="member-info-company"> ME Renewing </a></div>
+    <div class="member-info-department">Commercial</div>
+    <div class="member-info-team">Support Commercial BD</div>
+  </div>
+
+  <div class="team-member">
+  <a href="https://linkedin.com/in/catarinarsilva/">
+    <img src="catarina.png" alt="Foto da Catarina" class="member-photo">
+  </a>
+    <div class="member-name">CATARINA SILVA</div>
+    <div class="member-info-company"> ME Global </a></div>
+    <div class="member-info-department">Procurement & Logistics</div>
+    <div class="member-info-team">Core Categories Team</div>
+  </div>
+
+  <div class="team-member">
+  <a href="https://www.linkedin.com/in/gon%C3%A7alo-silva-578511212/">
+    <img src="goncalo.png" alt="Foto do Gonçalo" class="member-photo">
+  </a>
+    <div class="member-name">GONÇALO SILVA</div>
+    <div class="member-info-company"> MEEC </a></div>
+    <div class="member-info-department">SHEQ (Production)</div>
+    <div class="member-info-team">SHEQ</div>
+  </div>
+</body>
+</html>
